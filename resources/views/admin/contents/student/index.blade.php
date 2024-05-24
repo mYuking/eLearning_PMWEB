@@ -23,7 +23,7 @@
                         <th>NIM</th>
                         <th>Major</th>
                         <th>Class</th>
-                        <th>action</th>
+                        <th>Action</th>
                     
                     </tr>
 

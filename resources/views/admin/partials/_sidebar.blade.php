@@ -22,11 +22,10 @@
   </li>
 
 
-<li class="nav-item">
-    <a class="nav-link @if($currentRoute != '/admin/Courses') collapsed @endif  "href="/admin/student">
-      <i class="bi bi-user"></i>
-      <span>Courses</span>
-    </a>
-  </li>
-  </ul>
+  <li class="nav-item">
+        <a class="nav-link  @if($currentRoute != 'admin/courses') collapsed @endif" href="courses">
+          <i class="bi bi-book"></i>
+          <span>Courses</span>
+        </a>
+      </li>
 </aside><!-- End Sidebar-->
