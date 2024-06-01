@@ -32,8 +32,8 @@
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->category }}</td>
                             <td>{{ $course->desc }}</td>
-                            <td>
-                                <a href="#" class="btn btn-warning">Edit</a>
+                            <td class="d-flex">
+                                <a href="#" class="btn btn-warning me-2">Edit</a>
                                 <a href="#" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
