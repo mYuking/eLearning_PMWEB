@@ -13,58 +13,49 @@ class StudentCotroller extends Controller
         // mendapatkan data student dari database
         $students = Student::all();
 
-        
-
-        // panggil view dan kirim data je view
+        // panggil view dan kirim data ke view
         return view('admin.contents.student.index', [
             'students' => $students
         ]);
     }
 
-    // method untuk menampilkan form tambah student
-    public function create (){
-        // dapatkan data courses dari database
+     // method untuk menampilkan data student
+     public function create(){
         $courses = Courses::all();
-
         return view('admin.contents.student.create',[
-            'courses' => $courses
+            'courses'=> $courses
         ]);
     }
-
-    // method untuk menyimpan data student 
+    // method mengirim data
     public function store(Request $request){
-        // validasi data yang diterima 
         $request->validate([
-            'name'=> 'required', 
-            'nim'=> 'required|numeric',
-            'major'=> 'required',
-            'class'=> 'required',
-            'course_id'=> 'nullable|numeric',   
+            'name'=>'required',
+            'nim'=>'required|numeric',
+            'major'=>'required',
+            'class'=>'required',
+            'course_id'=>'nullable',
         ]);
-
-        //simpan ke database
         Student::create([
-            'name' => $request->name,
-            'nim' => $request->nim,
-            'major' => $request->major,
-            'class' => $request->class,
-            'course_id' => $request->course_id,
+            'name'=> $request->name,
+            'nim'=> $request->nim,
+            'major'=> $request->major,
+            'class'=> $request->class,
+            'course_id'=> $request->course_id,
         ]);
-
-        // arahkan ke halaman student index
-        return redirect('/admin/student')->with('pesan', 'Berhasil menambahkan data.');
+        return redirect('/admin/student')->with('pesan','Berhasil menambahkan data');
     }
-
-    // method untuk menampilkan halaman edit
     public function edit($id){
-        // cari student berdasarkan id
-        $student = Student::find($id); // SELECT * FROM students WHERE id = $id;
-        // kirim student ke view edit
-        return view('admin.contents.student.edit', [
-            'student'=>$student
-        ]);
-    }
+        // cari berdasarkan id
+        $student = Student::find($id);
 
+        // dd($student);
+        $courses = Courses::all();
+        return view('admin.contents.student.edit',[
+            'student'=> $student,
+            'courses'=> $courses,
+        ]);
+
+    }
     // menyimpan hasil update
     public function update(Request $request, $id){
         $student = Student::find($id); 
@@ -73,6 +64,7 @@ class StudentCotroller extends Controller
             'nim'=>'required|numeric',
             'major'=>'required',
             'class'=>'required',
+            'course_id'=>'nullable',
         ]);
 
         // simpan perubahan
@@ -81,17 +73,14 @@ class StudentCotroller extends Controller
             'nim'=> $request->nim,
             'major'=> $request->major,
             'class'=> $request->class,
+            'course_id'=> $request->course_id,
         ]);
         return redirect('/admin/student')->with('pesan','Berhasil menambahkan student');
     }  
-
-       // menghapus
+    // menghapus
     public function destroy($id){
         $student = Student::find($id);
         $student->delete();
         return redirect('/admin/student')->with('pesan','Berhasil DELETE student');
     }
-
-       
-    }
-
+}
