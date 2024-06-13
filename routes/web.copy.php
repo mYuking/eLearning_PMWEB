@@ -1,9 +1,4 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-
-
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PasienController;
@@ -11,8 +6,12 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentCotroller;
 
 
-
-
+Route::get('/', function () {
+    return view('welcome');
+});
+// // routing baru
+// Route::get('/salam',function(){
+//     return "Selamat pagi ges";
 // });
 // // routing profil
 // Route::get('/profil',function(){
@@ -26,8 +25,7 @@ use App\Http\Controllers\StudentCotroller;
 // Route::get('/dashboard',[DashboardController::class,'show']);
 
 // dashboar route
-route::get('admin/dashboard',[DashboardController::class,'index'])->name('dashboard');
-
+route::get('admin/dashboard',[DashboardController::class,'index']);
 // Route::get('pasien/show',[PasienController::class,'show']);
 Route::get('admin/student',[StudentCotroller::class,'index']);
 
@@ -60,22 +58,3 @@ Route::put('admin/student/update/{id}',[StudentCotroller::class,'update']);
 
 // menghapus data
 Route::delete('admin/student/delete/{id}',[StudentCotroller::class,'destroy']);
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-//Route::get('/dashboard', function () {
-    //return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-
-    
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
