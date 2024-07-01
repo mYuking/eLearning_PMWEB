@@ -11,8 +11,6 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentCotroller;
 
 
-
-
 // });
 // // routing profil
 // Route::get('/profil',function(){
@@ -29,11 +27,11 @@ use App\Http\Controllers\StudentCotroller;
 route::get('admin/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 // Route::get('pasien/show',[PasienController::class,'show']);
-Route::get('admin/student',[StudentCotroller::class,'index']);
+Route::get('admin/student',[StudentCotroller::class,'index'])->middleware('admin');
 
 
 // ------ index course --------\\
-Route::get('admin/courses',[CoursesController::class,'index']);
+Route::get('admin/courses',[CoursesController::class,'index']); 
 // menampilkan data 
 Route::get('admin/courses/create',[CoursesController::class,'create']);
 Route::post('admin/courses/create',[CoursesController::class,'store']);

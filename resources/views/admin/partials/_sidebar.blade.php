@@ -14,12 +14,14 @@
     </a>
   </li><!-- End Dashboard Nav -->
 
+  @if(Auth::user()->role == 'administrator')
   <li class="nav-item">
     <a class="nav-link @if($currentRoute != '/admin/student') collapsed @endif  "href="/admin/student">
       <i class="bi bi-grid"></i>
       <span>Student</span>
     </a>
   </li>
+  @endif
 
 
   <li class="nav-item">

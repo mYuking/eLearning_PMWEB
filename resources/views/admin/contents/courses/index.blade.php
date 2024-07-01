@@ -16,7 +16,9 @@
   <div class="section">
     <div class="card">
         <div class="card-body p-3">
+          @if(Auth::user()->role == 'administrator')
             <a href="/admin/courses/create" class="btn btn-primary m-3">+ Tambah</a>
+            @endif
             <div class="table-responsive">
                 <table class="table">
                     <tr>
@@ -24,14 +26,18 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Desc</th>
+                        @if(Auth::user()->role == 'administrator')
                         <th>Action</th>
+                        @endif
                     </tr>
+
                     @foreach ($courses as $course)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->category }}</td>
                             <td>{{ $course->desc }}</td>
+                            @if(Auth::user()->role == 'administrator')
                             <td class="d-flex">
                             <a href="{{ route('courses.edit', $course->id) }} " class="btn btn-warning me-2">Edit</a>
                           <form action="/admin/courses/delete/{{ $course->id }}" method="post">
@@ -40,6 +46,7 @@
                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda Yakin')" >Hapus</button>
                             </td>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </table>
